@@ -3,14 +3,16 @@
     "name": "greencity",
     "slug": "greencity",
     "version": "1.0.0",
-    "orientation": "portrait",
+
+    "orientation": "default",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3EC253"
     },
+
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -21,10 +23,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "kz.greencity.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ddf2104b-3650-4201-8e68-f66a0fa588d7"
+      }
     }
   }
 }
