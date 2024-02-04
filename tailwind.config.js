@@ -19,7 +19,6 @@ module.exports = {
       'inter-bold': ['Inter Bold', 'sans-serif'],
       'inter-extrabold': ['Inter ExtraBold', 'sans-serif'],
       'inter-black': ['Inter Black', 'sans-serif'],
-      'playfair':['PlayFair','sans-serif']
     },
     colors:{ primary:"#0ED250"},
   },

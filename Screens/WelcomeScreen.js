@@ -5,7 +5,7 @@ export const WelcomeScreen = ({navigation})=>{
 
     return(
         <View className={"justify-center flex-1"}>
-            <Text className={'font-black font-playfair text-3xl text-center'}>GreenCity</Text>
+            <Text className={'font-black  text-3xl text-center'}>GreenCity</Text>
             <Image source={require('../assets/images/logo.png')}/>
             <Pressable className={'bg-primary p-5 m-1 items-center rounded-small'}
                        onPress={async ()=>{

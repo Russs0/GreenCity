@@ -11,13 +11,6 @@ const inputStyle = 'p-4 m-4 shadow-sm  rounded-xl bg-white flex flex-row overflo
 
 export const Home = ({navigation}) => {
 
-    // useEffect(
-    //     () =>
-    //         navigation.addListener('beforeRemove', (e) => {
-    //             e.preventDefault();
-    //         }),
-    //     [navigation]
-    // );
     useEffect(() => {
         const backAction = () => {
             const doubleClickInterval = 1000;
@@ -29,10 +22,12 @@ export const Home = ({navigation}) => {
             ToastAndroid.show('Нажмите еще раз чтобы выйти', ToastAndroid.SHORT);
             return true;
         };
-
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-        return () => backHandler.remove();
-    }, []);
+        const backHandler = navigation.addListener('beforeRemove', (e) => {
+            e.preventDefault();
+            backAction();
+        })
+        return () => backHandler.dispatch();
+    }, [navigation]);
 
 
     const {control, handleSubmit,

@@ -23,9 +23,9 @@ const firstLaunch = isFirstLaunch();
     })
 
     const [fontsLoaded, fontError] = useFonts({
-        // 'Inter-Black': require('./assets/fonts/Inter/Inter-Black.ttf'),
+        'Inter-Black': require('./assets/fonts/Inter/Inter-Black.ttf'),
 
-        'PlayFair':require('./assets/fonts/PlayFair.ttf')
+        // 'PlayFair':require('./assets/fonts/PlayFair.ttf')
     });
 
   useCallback(async () => {
@@ -45,8 +45,6 @@ const Stack = createNativeStackNavigator();
     return (
         <SafeAreaView style={styles.container}>
             <NavigationContainer>
-
-
                <>
                        <Stack.Navigator screenOptions={{animation:"slide_from_right"}}>
                            {firstLaunch ? <Stack.Screen name={'WelcomeScreen'} component={WelcomeScreen} options={{headerShown: false,
