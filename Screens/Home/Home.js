@@ -1,13 +1,39 @@
-import {Pressable, Text, TouchableOpacity, View} from "react-native";
+import {BackHandler, Pressable, Text, ToastAndroid, TouchableOpacity, View} from "react-native";
 
 import {Ionicons} from "@expo/vector-icons";
 import {useForm} from "react-hook-form";
-import Input from "../../components/Input";
+import Input from "../../components/UI/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useEffect} from "react";
 
 
 const inputStyle = 'p-4 m-4 shadow-sm  rounded-xl bg-white flex flex-row overflow-hidden';
 
 export const Home = ({navigation}) => {
+
+    // useEffect(
+    //     () =>
+    //         navigation.addListener('beforeRemove', (e) => {
+    //             e.preventDefault();
+    //         }),
+    //     [navigation]
+    // );
+    useEffect(() => {
+        const backAction = () => {
+            const doubleClickInterval = 1000;
+            if (this.lastBackPressed && this.lastBackPressed + doubleClickInterval >= Date.now()) {
+                BackHandler.exitApp();
+                return true;
+            }
+            this.lastBackPressed = Date.now();
+            ToastAndroid.show('Нажмите еще раз чтобы выйти', ToastAndroid.SHORT);
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+        return () => backHandler.remove();
+    }, []);
+
 
     const {control, handleSubmit,
         formState: {errors}} = useForm({defaultValues:{title:null}});
@@ -24,7 +50,9 @@ export const Home = ({navigation}) => {
             <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={handleSubmit(getFields)}>
                 <Text className={'text-white '}>Create Post</Text>
             </Pressable>
-
+            <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={handleSubmit(getFields)}>
+                <Text className={'text-white '} onPress={async ()=>{await AsyncStorage.removeItem('first_launch')}}>RemoveKey</Text>
+            </Pressable>
 
 
             <View className={`p-4 bg-[#0ED250] rounded-lg`}>
@@ -62,8 +90,3 @@ export const Home = ({navigation}) => {
     )
 
 }
-// const styles = StyleSheet.create({
-//     button:{
-//         anima
-//     }
-// });

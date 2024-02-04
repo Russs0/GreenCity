@@ -46,6 +46,7 @@ const Tabs = () => {
     ];
 
     return (<Tab.Navigator initialRouteName={Screens[0].name}
+
                            safeAreaInsets={{bottom: 10}}
                            screenOptions={() => ({
                                tabBarHideOnKeyboard: true,
