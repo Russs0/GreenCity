@@ -7,14 +7,12 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {Platform, SafeAreaView, StatusBar, StyleSheet} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import {useFonts} from "expo-font";
-import {useCallback} from "react";
+import {useCallback, useEffect, useState} from "react";
 
-// SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
-
-const firstLaunch = isFirstLaunch();
     const styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -22,24 +20,34 @@ const firstLaunch = isFirstLaunch();
         },
     })
 
-    const [fontsLoaded, fontError] = useFonts({
-        'Inter-Black': require('./assets/fonts/Inter/Inter-Black.ttf'),
+    const [firstLaunch, setFirstLaunch] = useState(null);
 
-        // 'PlayFair':require('./assets/fonts/PlayFair.ttf')
+    useEffect(() => {
+        (async () => {
+            const firstLaunch = await isFirstLaunch();
+            setFirstLaunch(firstLaunch);
+        })();
+    }, []);
+
+    const [fontsLoaded, fontError] = useFonts({
+        'Inter Black': require('./assets/fonts/Inter/Inter-Black.ttf'),
+
     });
 
-  useCallback(async () => {
-      console.log(fontsLoaded)
+    const hideSplash = useCallback(async () => {
         if (fontsLoaded || fontError) {
-
             await SplashScreen.hideAsync();
-            console.log(fontError);
         }
+
     }, [fontsLoaded, fontError]);
+
+    hideSplash(); // Call the function
+
 
     if (!fontsLoaded && !fontError) {
         return null;
     }
+
 const Stack = createNativeStackNavigator();
 
     return (
@@ -47,8 +55,10 @@ const Stack = createNativeStackNavigator();
             <NavigationContainer>
                <>
                        <Stack.Navigator screenOptions={{animation:"slide_from_right"}}>
-                           {firstLaunch ? <Stack.Screen name={'WelcomeScreen'} component={WelcomeScreen} options={{headerShown: false,
-                                   animation:"fade_from_bottom"}}/> :null
+                           {firstLaunch ?
+                               <Stack.Screen name={'WelcomeScreen'} component={WelcomeScreen} options={{headerShown: false,
+                                   animation:"fade_from_bottom"}}/>
+                               :null
                            }
                            <Stack.Screen name="Tabs" component={Tabs} options={{
                                headerShown: false,

@@ -46,7 +46,7 @@ export const Home = ({navigation}) => {
                 <Text className={'text-white '}>Create Post</Text>
             </Pressable>
             <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={handleSubmit(getFields)}>
-                <Text className={'text-white '} onPress={async ()=>{await AsyncStorage.removeItem('first_launch')}}>RemoveKey</Text>
+                <Text className={'text-white '} onPress={async ()=>{await AsyncStorage.removeItem('first_launch').then(()=>{ console.log("removed!")})}}>RemoveKey</Text>
             </Pressable>
 
 
