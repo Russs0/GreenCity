@@ -4,7 +4,7 @@
     "slug": "greencity",
     "version": "1.0.0",
 
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/app_icons/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {

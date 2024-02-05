@@ -5,7 +5,8 @@ import Publications from "./Publications/Publications";
 import Settings from "./Settings/Settings";
 import {AntDesign, Ionicons} from "@expo/vector-icons";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {AddPost} from "./AddPost";
+import {AddPost} from "./AddPost/AddPost";
+import {Header} from "./Home/Header";
 
 const Tabs = () => {
     const Tab = createBottomTabNavigator();
@@ -14,7 +15,7 @@ const Tabs = () => {
         {
             name: "Home",
             component: Home,
-            options: null,
+            options: {headerShown:true,headerBackground:Header,headerTitle:'',headerStyle:{height:"10%"}},
             icon: ({focused}) => <Ionicons name={focused ? "home" : "home-outline"} size={24} color={"#0ED250"}/>
 
         },
