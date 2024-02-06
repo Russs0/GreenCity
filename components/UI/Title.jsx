@@ -6,9 +6,10 @@ export const Title = ({children,size})=>{
         container:{
             width:"100%",
             borderStyle:'solid',
-            borderBottomWidth:1
+            borderBottomWidth:1,
+            padding:5,margin:10
         },
-        text:{fontWeight:"bold",fontSize:size||15}
+        text:{fontWeight:"800",fontSize:size||16}
     })
     return(
         <View style={styles.container}>

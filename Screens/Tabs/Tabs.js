@@ -7,38 +7,39 @@ import {AntDesign, Ionicons} from "@expo/vector-icons";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {AddPost} from "./AddPost/AddPost";
 import {Header} from "./Home/Header";
+import {SCREENS, TABS} from "../constants";
 
 const Tabs = () => {
     const Tab = createBottomTabNavigator();
 
     const Screens = [
         {
-            name: "Home",
+            name: SCREENS.TABS.HOME,
             component: Home,
             options: {headerShown:true,headerBackground:Header,headerTitle:'',headerStyle:{height:"10%"}},
             icon: ({focused}) => <Ionicons name={focused ? "home" : "home-outline"} size={24} color={"#0ED250"}/>
 
         },
         {
-            name: "Map",
+            name:  SCREENS.TABS.MAP,
             component: Map,
             options: null,
             icon: ({focused}) => <Ionicons name={focused ? "map" : "map-outline"} size={24} color={"#0ED250"}/>
         },
         {
-            name: "AddPost",
+            name: SCREENS.TABS.ADD_POST,
             component: AddPost,
             options: null,
             icon: ({focused}) => <AntDesign name={focused?"pluscircle":"pluscircleo"} size={26} color={"#0ED250"} />
         },
         {
-            name: "Publications",
+            name: SCREENS.TABS.PUBLICATIONS,
             component: Publications,
             options: null,
             icon: ({focused}) => <Ionicons name={focused ? "albums" : "albums-outline"} size={24} color={"#0ED250"}/>
         },
         {
-            name: "Settings",
+            name: SCREENS.TABS.SETTINGS,
             component: Settings,
             options: null,
             icon: ({focused}) => <Ionicons name={focused ? 'ellipsis-horizontal' : 'ellipsis-horizontal-outline'}

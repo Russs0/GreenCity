@@ -8,39 +8,37 @@ import {useEffect} from "react";
 import {isFirstLaunch} from "../../../utils/isFirstLaunch";
 import Slider from "./Slider";
 import {Title} from "../../../components/UI/Title";
+import {useDoubleBackHandler} from "../../../hooks/useDoubleBackHandler";
 
 
 const inputStyle = 'p-4 m-4 shadow-sm  rounded-xl bg-white flex flex-row overflow-hidden';
 
 export const Home = ({navigation}) => {
 
+    useDoubleBackHandler();
     useEffect(() => {
 
         (async () => {
             const firstLaunch = await isFirstLaunch();
-
-            console.log(firstLaunch)
+            console.log("FirstLaunch: ",firstLaunch)
             if (firstLaunch) {
                 navigation.navigate('WelcomeScreen')
             }
         })();
 
-        const backAction = () => {
-            const doubleClickInterval = 1000;
-            if (this.lastBackPressed && this.lastBackPressed + doubleClickInterval >= Date.now()) {
-                BackHandler.exitApp();
-                return true;
-            }
-            this.lastBackPressed = Date.now();
-            ToastAndroid.show('Нажмите еще раз чтобы выйти', ToastAndroid.SHORT);
-            return true;
-        };
-        const backHandler = navigation.addListener('beforeRemove', (e) => {
-            e.preventDefault();
-            backAction();
-        })
-        return () => navigation.dispatch(backHandler)
-    }, [navigation]);
+            }, [navigation]);
+
+
+    // const backAction = () => {
+    //     const doubleClickInterval = 1000;
+    //     if (this.lastBackPressed && this.lastBackPressed + doubleClickInterval >= Date.now()) {
+    //         BackHandler.exitApp();
+    //         return true;
+    //     }
+    //     this.lastBackPressed = Date.now();
+    //     ToastAndroid.show('Нажмите еще раз чтобы выйти', ToastAndroid.SHORT);
+    //     return true;
+    // };
 
 
     const {
@@ -52,10 +50,10 @@ export const Home = ({navigation}) => {
     }
 
     return (
-        <ScrollView className={`h-full`}>
+        <ScrollView className={`h-full p-2 bg-white`}>
 
             <Slider/>
-            <View className={`p-4 bg-[#0ED250] rounded-lg`}>
+            <View className={`p-4 bg-[#0ED250] rounded-lg mb-2`}>
                 <View>
                     {/* Menu Item 1 */}
                     <TouchableOpacity className={`p-3 m-1 bg-white rounded-lg justify-center items-center`}>
@@ -95,12 +93,13 @@ export const Home = ({navigation}) => {
             <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={handleSubmit(getFields)}>
                 <Text className={'text-white '}>Create Post</Text>
             </Pressable>
-            <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={handleSubmit(getFields)}>
-                <Text className={'text-white '} onPress={async () => {
-                    await AsyncStorage.removeItem('first_launch').then(() => {
-                        console.log("removed!")
-                    })
-                }}>RemoveKey</Text>
+            <Pressable className={'items-center bg-green-800 p-3 m-3'} onPress={ async () => {
+                handleSubmit(getFields)
+                await AsyncStorage.removeItem('first_launch').then(() => {
+                    console.log("removed!")
+                })
+            }}>
+                <Text className={'text-white '} >RemoveKey</Text>
             </Pressable>
         </ScrollView>
 

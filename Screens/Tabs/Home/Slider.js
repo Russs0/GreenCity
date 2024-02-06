@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-        margin:10,
+        marginBottom:10,
 
     },
     scrollView: {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
     },
     slide: {
-        width:width-20,
+        width:width-16,
         justifyContent: 'center',
         alignItems: 'center',
         height: 300,
