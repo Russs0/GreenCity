@@ -7,7 +7,7 @@ import {AntDesign, Ionicons} from "@expo/vector-icons";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {AddPost} from "./AddPost/AddPost";
 import {Header} from "./Home/Header";
-import {SCREENS, TABS} from "../constants";
+import {SCREENS} from "../constants";
 
 const Tabs = () => {
     const Tab = createBottomTabNavigator();

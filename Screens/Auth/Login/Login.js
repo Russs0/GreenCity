@@ -1,4 +1,4 @@
-import {Pressable, Text, View} from "react-native";
+import {Text, View} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {ButtonPrimary} from "../../../components/UI/Button/ButtonPrimary";
 
