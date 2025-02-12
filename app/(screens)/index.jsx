@@ -5,15 +5,25 @@ import CustomText from "../../components/UI/CustomText";
 import CustomButton from "../../components/UI/Button/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {isTokenExpired} from "../../helpers/isTokenExpired";
+import {getCurrentUser} from "../../base/API/user";
+import {UserStore} from "../../base/store/UserStore";
+import {getAllPosts} from "../../base/API/post";
 
 const Index = () => {
     const router = useRouter();
+    const {setUserInfo,setPosts} = UserStore()
     useEffect(() => {
+
         AsyncStorage.getItem('token').then(token => {
             if(token && token.length>0 && !isTokenExpired(token)){
-                router.navigate('map');
+                getCurrentUser().then(data=>setUserInfo(data))
+                getAllPosts().then(data=>setPosts(data))
+                router.replace('map');
             }
-            else {router.navigate('index');}
+            else {
+                console.log(router)
+                // router.push('/');
+            }
         })
     }, []);
     return (

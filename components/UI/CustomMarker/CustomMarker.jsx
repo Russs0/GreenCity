@@ -1,9 +1,9 @@
 import {View,StyleSheet} from "react-native";
 import {AppColor} from "../../../constants/Colors";
 
-export const CustomMarker = () => (
+export const CustomMarker = ({select=false}) => (
     <View style={styles.marker}>
-        <View style={styles.markerOutline}>
+        <View style={select?styles.markerOutline:null}>
             <View style={styles.markerInner} />
         </View>
     </View>

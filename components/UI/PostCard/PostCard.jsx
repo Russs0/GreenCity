@@ -1,25 +1,32 @@
 import React from 'react';
-import {Image, Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import CustomText from "../CustomText";
 import {AppColor} from "../../../constants/Colors";
+import {useRouter} from "expo-router";
+import {$host} from "../../../base/API";
 
 const PostCard = ({item}) => {
+    const router = useRouter()
     return (
-        <View style={styles.card} >
+        <Pressable onPress={() => {
+            router.navigate(`post/${item._id}`)
+        }} style={styles.card}>
             <Image
-                source={{ uri: item.media[0] }} // replace with your image URL or local image path
+                source={{uri: ($host.defaults.baseURL + '/' + item.media[0])}} // replace with your image URL or local image path
                 style={styles.image}
             />
             <CustomText.bold fontType={'h3'} style={styles.title}>{item.title}</CustomText.bold>
-            <Text style={[styles.status,{color:item.closed?'#fa5555':AppColor.primary}]}>{item.closed?'Завершен':'В обработке'}</Text>
-            <Text style={styles.description} >Не горит СветофорНе горит Светофор</Text>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{marginTop:25,flexDirection:'row',flexWrap:'wrap'}} >
-                {item.category?.map((i,index)=>
-                    <View style={[styles.chip,{marginRight:10,}]} key={index}>
-                    <CustomText.bold style={{fontSize:12, color:AppColor.primary}}>{i}</CustomText.bold>
-                </View>)}
-            </ScrollView>
-        </View>
+            <Text
+                style={[styles.status, {color: item.closed ? '#fa5555' : AppColor.primary}]}>{item.closed ? 'Завершен' : 'В обработке'}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+            <View>
+                {item.catalog[0] &&
+                    <View style={[styles.chip, {width: '45%', marginTop: 25}]}>
+                        <CustomText.bold
+                            style={{fontSize: 12, color: AppColor.primary}}>{item.catalog[0].name}</CustomText.bold>
+                    </View>}
+            </View>
+        </Pressable>
     );
 };
 
@@ -32,8 +39,8 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowRadius: 2,
         shadowOpacity: 0.2,
-        elevation:7,
-        width:'100%',
+        elevation: 7,
+        width: '100%',
         // boxShadow:'',
         marginBottom: 10,
     },
@@ -55,16 +62,16 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     chip: {
-        borderWidth:1.5,
-        borderColor:AppColor.primary,
+        borderWidth: 1.5,
+        borderColor: AppColor.primary,
         backgroundColor: 'transparent',
         borderRadius: 10,
-        margin:1,
+        margin: 1,
         // height:30,
-        padding:5,
+        padding: 5,
         // width:'45%',
-        flexDirection:'row',
-        justifyContent:'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
     }
 });

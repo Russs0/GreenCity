@@ -1,5 +1,8 @@
 {
   "expo": {
+    "packagerOpts": {
+      "https": false
+    },
     "name": "GreenCity",
     "slug": "greencity",
     "version": "1.0.0",
@@ -29,6 +32,14 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ddf2104b-3650-4201-8e68-f66a0fa588d7"
+      }
+    }
   }
 }

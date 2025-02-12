@@ -19,13 +19,17 @@ const CustomButton = {
             </Pressable>
         );
     },
-    outlined: ({
+    outlined: ({text=null,textType='',
                    style, children, onPress = () => {
         }
                }) => {
         return (
             <Pressable style={[styles.default, styles.outlined, style]} onPress={onPress}>
                 {children}
+                {text&&
+                    <CustomText.bold style={{color:AppColors.primary,fontSize:14}} fontType={textType|undefined}>
+                        {text}
+                    </CustomText.bold>}
             </Pressable>
         );
     },
@@ -42,6 +46,7 @@ const styles = StyleSheet.create({
     outlined: {
         backgroundColor: 'transparent',
         borderColor: AppColors.primary,
+        borderWidth:1
     },
 });
 

@@ -1,0 +1,22 @@
+export const Cities = [
+    { name: "Алматы", latitude: 43.25667, longitude: 76.92861 },
+    { name: "Шымкент", latitude: 42.3, longitude: 69.6 },
+    { name: "Тараз", latitude: 42.9, longitude: 71.36667 },
+    { name: "Павлодар", latitude: 52.28333, longitude: 76.96667 },
+    { name: "Усть-Каменогорск", latitude: 49.97143, longitude: 82.60586 },
+    { name: "Кызылорда", latitude: 44.85278, longitude: 65.50917 },
+    { name: "Семей", latitude: 50.42675, longitude: 80.26669 },
+    { name: "Актобе", latitude: 50.27969, longitude: 57.20718 },
+    { name: "Караганда", latitude: 49.80187, longitude: 73.10211 },
+    { name: "Костанай", latitude: 53.21435, longitude: 63.62463 },
+    { name: "Уральск", latitude: 51.23333, longitude: 51.36667 },
+    { name: "Атырау", latitude: 47.11667, longitude: 51.88333 },
+    { name: "Нур-Султан", latitude: 51.1801, longitude: 71.44598 },
+    { name: "Туркестан", latitude: 43.29733, longitude: 68.25175 },
+    { name: "Кокшетау", latitude: 53.28333, longitude: 69.4 },
+    { name: "Экибастуз", latitude: 51.72371, longitude: 75.32287 },
+    { name: "Талдыкорган", latitude: 45.01556, longitude: 78.37389 },
+    { name: "Петропавловск", latitude: 54.86667, longitude: 69.15 },
+    { name: "Аксу", latitude: 52.04023, longitude: 76.92748 },
+    { name: "Темиртау", latitude: 50.05494, longitude: 72.96464 }
+];

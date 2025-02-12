@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 export const UserStore = create((set) => ({
-    auth: false,
     userInfo: {
         id: '',
         email: "",
@@ -10,11 +9,12 @@ export const UserStore = create((set) => ({
     },
     posts: [],
     subscribes: [],
-    isModerator:false,
-    currentLocation:[],
-    setCurrentLocation:(location) => set({ location }),
-    setAuth: (isAuth) => set({ auth: isAuth }),
-    setUserInfo: (info) => set({ info }),
+    isModerator: false,
+    currentLocation: {name:"Алматы",latitude: 43.2351489, longitude: 76.9070787},
+    selectedPlace: null,
+    setSelectedPlace: (location) => set({ selectedPlace: location }),
+    setCurrentLocation: (location) => set({ currentLocation: location }),
+    setUserInfo: (info) => set({ userInfo: info }),
     setPosts: (posts) => set({ posts }),
     setSubscribes: (subscribes) => set({ subscribes }),
 }));

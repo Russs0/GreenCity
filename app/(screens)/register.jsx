@@ -23,7 +23,7 @@ export default function Registration() {
                 setUserInfo({id: d._id,email:d.email,username:d.username})
                 AsyncStorage.setItem('token', d.token).then(r => {console.log(r)})
             setAlert({visible: true,message:'Пользователь успешно создан!',type:'success'})
-            setTimeout(()=>router.navigate('map'),2000)
+            setTimeout(()=>router.replace('map'),2000)
             }
         ).catch(error=>{
             const message = error.response.data.message||error.response.data[0].msg;

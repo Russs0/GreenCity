@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from "react-native";
 import Input from "../../components/UI/Input/Input";
 import {Container} from "../../components/UI/Container/Container";
@@ -24,7 +24,7 @@ const Login = () => {
                 setUserInfo({id: d._id,email:d.email,username:d.username})
             })
 
-            router.navigate('map')
+            router.replace('map')
         }).catch(error=>{
             const message = error.response.data.message||error.response.data[0].msg;
             console.log(error)
@@ -36,7 +36,8 @@ const Login = () => {
         control, handleSubmit,
         formState: {errors}
     } = useForm({defaultValues: {email: null, password: null}});
-
+    useEffect(() => {
+    }, []);
     return (
         <Container>
             {alert.visible&&<AnimatedAlert setAlert={setAlert} message={alert.message} type={alert.type}/>}

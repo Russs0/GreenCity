@@ -4,7 +4,7 @@ import {Ionicons} from "@expo/vector-icons";
 import {AppColor} from "../../../constants/Colors";
 
 
-export const AnimatedAlert = ({ message,type,callback=()=>{} ,setAlert}) => {
+export const AnimatedAlert = ({ message,type,callback=()=>{} ,style=null,setAlert}) => {
     const [fadeAnim] = useState(new Animated.Value(0));
     const colors = {
         warning:'orange',
@@ -45,7 +45,7 @@ export const AnimatedAlert = ({ message,type,callback=()=>{} ,setAlert}) => {
 
 
     const styles = StyleSheet.create({
-        container: {
+        container: [{
             backgroundColor: type?colors[type]:'rgb(255,33,33)',
             flexDirection:'row',
             alignItems:'center',
@@ -57,7 +57,8 @@ export const AnimatedAlert = ({ message,type,callback=()=>{} ,setAlert}) => {
             left: 0,
             right: 0,
             zIndex: 9999,
-        },
+
+        }, {...style}],
         message: {
             color: '#fff',
             paddingLeft:5
